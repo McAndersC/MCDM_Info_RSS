@@ -5,12 +5,22 @@ const list = document.querySelector('.news-list');
 
 const app = {};
 
+app.tmpl = (el, index) => `<div>
+    <h1>${index} - ${el.querySelector("title").innerHTML})</h1>
+    <div>Author: ${el.querySelector("creator").innerHTML}</div>
+    <p>
+        <a target="_blank" href="${el.querySelector("link").innerHTML}">${el.querySelector("link").innerHTML}</a>
+    </p>
+</div>`
+
 app.renderNewyorkTimes = (data) => {
     console.log(data)
   
     const items = data.querySelectorAll("item");
     items.forEach((el, index) => {
-        list.innerHTML += `<h1>${index} - ${el.querySelector("title").innerHTML})</h1>`
+
+    
+        list.innerHTML += app.tmpl(el,index);
     });
 }
 
